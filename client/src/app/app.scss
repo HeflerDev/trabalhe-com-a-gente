@@ -1,0 +1,23 @@
+.app-container {
+  padding: 16px;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.cat-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  background: #fefefe;
+}
+
+.cat-card img {
+  max-width: 100%;
+  border-radius: 4px;
+}
