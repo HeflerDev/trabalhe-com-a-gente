@@ -1,5 +1,11 @@
 FROM node:20-alpine AS base
-
+#
+# NOTE:
+# This file uses multi-stage setup and follow 
+# the best practices, using lower permission user.
+# This is better not only for development, but also 
+# for security
+#
 WORKDIR /usr/src/app/server
 COPY ./server/package*.json ./
 RUN npm install
@@ -10,7 +16,7 @@ USER appuser
 FROM node:20-alpine AS production
 WORKDIR /usr/src/app/server
 COPY --from=base /usr/src/app/server ./
-CMD ["node", "./src/index.js"]
+CMD ["npm", "run", "prd"]
 
 FROM node:20-alpine AS development
 WORKDIR /usr/src/app/server

@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "docker compose -f compose.yml -f compose/develop.yml up --build"
+    "dev": "docker compose -f compose.yml -f compose/develop.yml up --build",
+    "deploy:build": "docker compose -f compose.yml -f compose/deploy.yml build",
+    "deploy:run": "docker compose -f compose.yml -f compose/deploy.yml up"
   },
   "repository": {
     "type": "git",
