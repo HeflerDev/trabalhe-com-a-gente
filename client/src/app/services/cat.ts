@@ -43,6 +43,8 @@ export class Cat {
       }
     `;
 
+    console.log('Reached API');
+
     return this.apollo
       .watchQuery({
         query: GetCatImages,
