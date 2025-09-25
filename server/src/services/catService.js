@@ -4,7 +4,7 @@ export async function getImagesFromCatApi({
   limit = 10,
   page = 0,
   order = "RAND",
-  has_breeds = 0,
+  has_breeds = 1,
   breed_ids,
   category_ids,
   sub_id,
@@ -20,6 +20,8 @@ export async function getImagesFromCatApi({
   if (category_ids?.length)
     params.append("category_ids", category_ids.join(","));
   if (sub_id) params.append("sub_id", sub_id);
+
+  console.log(`/images/search?${params.toString()}`);
 
   const { data } = await catApiClient.get(
     `/images/search?${params.toString()}`,

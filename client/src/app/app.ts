@@ -25,7 +25,7 @@ export class App {
       return;
     }
 
-    this.catService.getImages(10, 0, 'RAND', 1, undefined, undefined, term).subscribe((images) => {
+    this.catService.getImages(3, 0, 'RAND', 1, [term], undefined, term).subscribe((images) => {
       this.images = images;
     });
   }

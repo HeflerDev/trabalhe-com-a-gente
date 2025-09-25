@@ -11,7 +11,7 @@ export class Cat {
     limit = 10,
     page = 0,
     order: 'ASC' | 'DESC' | 'RAND' = 'RAND',
-    has_breeds = 0,
+    has_breeds = 1,
     breed_ids?: string[],
     category_ids?: string[],
     sub_id?: string,
@@ -39,11 +39,19 @@ export class Cat {
           url
           width
           height
+          breeds {
+            id
+            name
+            origin
+            temperament
+            weight {
+              imperial
+              metric
+            }
+          }
         }
       }
     `;
-
-    console.log('Reached API');
 
     return this.apollo
       .watchQuery({
