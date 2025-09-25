@@ -1,0 +1,24 @@
+{
+  "name": "angular-project-server",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "docker compose -f compose.yml -f compose/develop.yml up --build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/HeflerDev/trabalhe-com-a-gente.git"
+  },
+  "author": "HeflerDev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HeflerDev/trabalhe-com-a-gente/issues"
+  },
+  "homepage": "https://github.com/HeflerDev/trabalhe-com-a-gente#readme",
+  "description": "",
+  "dependencies": {
+    "@apollo/server": "^5.0.0"
+  }
+}
