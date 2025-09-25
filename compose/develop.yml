@@ -11,7 +11,7 @@ services:
       - ./server/.env
     volumes:
       - ./server:/usr/src/app/server
-      - server_node_modules:/usr/src/app/server/node_modules
+      # - server_node_modules:/usr/src/app/server/node_modules
 
   client:
     container_name: main_client_dev

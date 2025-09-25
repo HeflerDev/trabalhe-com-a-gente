@@ -20,7 +20,8 @@
   "homepage": "https://github.com/HeflerDev/trabalhe-com-a-gente#readme",
   "description": "",
   "dependencies": {
-    "@apollo/server": "^5.0.0"
+    "@apollo/server": "^5.0.0",
+    "axios": "^1.12.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

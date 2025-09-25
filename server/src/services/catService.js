@@ -1,3 +1,5 @@
+import { catApiClient } from "./index.js";
+
 export async function getImagesFromCatApi({
   limit = 10,
   page = 0,
@@ -19,9 +21,11 @@ export async function getImagesFromCatApi({
     params.append("category_ids", category_ids.join(","));
   if (sub_id) params.append("sub_id", sub_id);
 
-  const { data } = await axios.get(
-    `${CAT_API_URL}/images/search?${params.toString()}`,
+  const { data } = await catApiClient.get(
+    `/images/search?${params.toString()}`,
   );
+
+  console.log(data);
 
   return data;
 }
