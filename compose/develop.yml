@@ -12,8 +12,6 @@ services:
     volumes:
       - ./server:/usr/src/app/server
       - server_node_modules:/usr/src/app/server/node_modules
-    networks:
-      - app
 
 volumes:
   server_node_modules:
