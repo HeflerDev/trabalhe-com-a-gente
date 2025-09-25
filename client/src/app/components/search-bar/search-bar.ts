@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +16,8 @@ import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs'
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './search-bar.html',
   styleUrl: './search-bar.scss'
