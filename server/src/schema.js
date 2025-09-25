@@ -7,7 +7,7 @@ export const typeDefs = `#graphql
   }
 
   type Query {
-    getImages(
+    getCatImages(
       limit: Int = 10,
       page: Int = 0,
       order: String = "RAND",
