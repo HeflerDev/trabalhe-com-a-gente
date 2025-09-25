@@ -1,3 +1,0 @@
-networks:
-  app:
-    driver: brigde
