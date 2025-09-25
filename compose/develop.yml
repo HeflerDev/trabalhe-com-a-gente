@@ -13,5 +13,19 @@ services:
       - ./server:/usr/src/app/server
       - server_node_modules:/usr/src/app/server/node_modules
 
+  client:
+    container_name: main_client_dev
+    build:
+      context: ./
+      dockerfile: ./client/Dockerfile
+      target: development
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./client:/usr/src/app/client
+      - /usr/src/app/client/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
 volumes:
   server_node_modules:
