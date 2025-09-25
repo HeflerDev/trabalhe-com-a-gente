@@ -1,0 +1,16 @@
+services:
+  server:
+    image: node:22
+    container_name: main_server_dev
+    working_dir: /usr/src/app
+    restart: always
+    build:
+      context: ./
+      dockerfile: ./server/Dockerfile
+      target: development
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./server/.env
+    networks:
+      - app
