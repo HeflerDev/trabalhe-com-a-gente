@@ -35,4 +35,15 @@ export const typeDefs = `#graphql
       sub_id: String
     ): [CatImage!]!
   }
+
+  type Vote {
+    id: ID!
+    image_id: String!
+    sub_id: String
+    value: Int!
+  }
+
+  type Mutation {
+    postVote(image_id: String!, sub_id: String, value: Int!): Vote
+  }
 `;

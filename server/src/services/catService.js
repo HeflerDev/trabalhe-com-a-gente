@@ -21,8 +21,6 @@ export async function getImagesFromCatApi({
     params.append("category_ids", category_ids.join(","));
   if (sub_id) params.append("sub_id", sub_id);
 
-  console.log(`/images/search?${params.toString()}`);
-
   const { data } = await catApiClient.get(
     `/images/search?${params.toString()}`,
   );
@@ -30,4 +28,15 @@ export async function getImagesFromCatApi({
   console.log(data);
 
   return data;
+}
+
+export async function postVoteForCatApi({ image_id, sub_id, value }) {
+  try {
+    const payload = { image_id, sub_id, value };
+    const { data } = await catApiClient.post("/votes", payload);
+    return data;
+  } catch (err) {
+    console.error("Error posting vote:", err.response?.data || err.message);
+    throw err;
+  }
 }

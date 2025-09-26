@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SearchBar } from './components/search-bar/search-bar';
 import { Cat } from './services/cat';
+import { Track } from './services/track';
 import { CommonModule } from '@angular/common';
 import { CatImage } from './services/cat.type';
 
@@ -12,12 +13,22 @@ import { CatImage } from './services/cat.type';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('client');
 
-  constructor(private catService: Cat) {}
+  constructor(
+    private catService: Cat,
+    private trackService: Track,
+  ) {}
 
   public images: CatImage[] = [];
+  public userId!: string;
+
+  ngOnInit(): void {
+    this.userId = this.trackService.getUserTrack();
+    // TODO: Remove This
+    console.log('User Id', this.userId);
+  }
 
   onSearch(term: string) {
     if (!term) {

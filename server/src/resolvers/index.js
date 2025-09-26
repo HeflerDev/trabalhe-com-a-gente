@@ -1,9 +1,20 @@
-import { getImagesFromCatApi } from "../services/catService.js";
+import {
+  getImagesFromCatApi,
+  postVoteForCatApi,
+} from "../services/catService.js";
 
-export const resolvers = {
-  Query: {
-    getCatImages: async (_, args) => {
-      return await getImagesFromCatApi(args);
+export const resolvers = [
+  {
+    Query: {
+      getCatImages: async (_, args) => {
+        return await getImagesFromCatApi(args);
+      },
+    },
+
+    Mutation: {
+      postVote: async (args) => {
+        return await postVoteForCatApi(args);
+      },
     },
   },
-};
+];
