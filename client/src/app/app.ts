@@ -36,8 +36,10 @@ export class App implements OnInit {
       return;
     }
 
-    this.catService.getImages(3, 0, 'RAND', 1, [term], undefined, term).subscribe((images) => {
-      this.images = images;
-    });
+    this.catService
+      .getImages(3, 0, 'RAND', 1, [term], undefined, this.userId)
+      .subscribe((images) => {
+        this.images = images;
+      });
   }
 }
