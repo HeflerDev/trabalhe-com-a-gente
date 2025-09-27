@@ -60,4 +60,30 @@ export class Cat {
       })
       .valueChanges.pipe(map((result) => (result.data as any).getCatImages));
   }
+
+  postVote(image_id: string, sub_id: string, value: number): any {
+    try {
+      const PostVote = gql`
+        mutation PostVote($image_id: String!, $sub_id: String, $value: Int!) {
+          postVote(image_id: $image_id, sub_id: $sub_id, value: $value) {
+            message
+            id
+            image_id
+            sub_id
+            value
+            country_code
+          }
+        }
+      `;
+
+      return this.apollo
+        .mutate({
+          mutation: PostVote,
+          variables: { image_id, sub_id, value },
+        })
+        .pipe(map((result) => result.data as any));
+    } catch (error: any) {
+      throw new Error(`Failed to post vote: ${error.message}`);
+    }
+  }
 }

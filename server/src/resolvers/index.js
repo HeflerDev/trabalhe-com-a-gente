@@ -12,8 +12,9 @@ export const resolvers = [
     },
 
     Mutation: {
-      postVote: async (args) => {
-        return await postVoteForCatApi(args);
+      postVote: async (_, args) => {
+        const { image_id, sub_id, value } = args;
+        return await postVoteForCatApi(image_id, sub_id, value);
       },
     },
   },

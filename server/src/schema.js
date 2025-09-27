@@ -24,6 +24,11 @@ export const typeDefs = `#graphql
     breeds: [Breed]
   }
 
+type Image {
+  id: ID!
+  url: String!
+}
+
   type Query {
     getCatImages(
       limit: Int = 10,
@@ -37,10 +42,12 @@ export const typeDefs = `#graphql
   }
 
   type Vote {
-    id: ID!
-    image_id: String!
+    message: String
+    id: Int
+    image_id: String
     sub_id: String
-    value: Int!
+    value: Int
+    country_code: String
   }
 
   type Mutation {

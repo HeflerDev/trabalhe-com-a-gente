@@ -30,13 +30,14 @@ export async function getImagesFromCatApi({
   return data;
 }
 
-export async function postVoteForCatApi({ image_id, sub_id, value }) {
+export async function postVoteForCatApi(image_id, sub_id, value) {
   try {
     const payload = { image_id, sub_id, value };
+    console.log("Posting vote with payload:", payload);
     const { data } = await catApiClient.post("/votes", payload);
     return data;
   } catch (err) {
     console.error("Error posting vote:", err.response?.data || err.message);
-    throw err;
+    throw new Error(err.message);
   }
 }
