@@ -35,11 +35,11 @@ jobs:
 
       - name: Tag Images
         run: |
-          docker tag {{ env.DOCKER_USERNAME }}/{{ env.DOCKER_REPO }} "{{ env.DOCKER_USERNAME }}/{{ env.DOCKER_REPO }}:latest"
+          docker tag ${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }} "${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}:latest"
 
       - name: Push to Repository
         run: |
-          docker push "{{ env.DOCKER_USERNAME }}/{{ env.DOCKER_REPO }}:latest"
+          docker push "${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}:latest"
 
   deploy:
     name: Deploy to EC2
