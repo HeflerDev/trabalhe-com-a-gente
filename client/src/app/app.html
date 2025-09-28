@@ -3,6 +3,18 @@
 
   <app-search-bar (search)="onSearch($event)"></app-search-bar>
 
+  <div class="breeds-grid">
+    @for (breed of breeds; track breed.name) {
+      <button
+        mat-button
+        (click)="filterByBreed(breed.name)"
+        [class.selected]="selectedBreed === breed.name"
+      >
+        {{ breed.name }}
+      </button>
+    }
+  </div>
+
   <div class="cat-grid">
     @for (cat of images; track cat.id) {
       <div class="cat-card">

@@ -5,7 +5,7 @@ import { SearchBar } from './components/search-bar/search-bar';
 import { Cat } from './services/cat';
 import { Track } from './services/track';
 import { CommonModule } from '@angular/common';
-import { CatImage } from './services/cat.type';
+import { Breeds, CatImage } from './services/cat.type';
 
 @Component({
   selector: 'app-root',
@@ -17,17 +17,32 @@ import { CatImage } from './services/cat.type';
 export class App implements OnInit {
   protected readonly title = signal('client');
 
+  private queryConfig: {
+    limit: number;
+    page: number;
+    order: 'ASC' | 'DESC' | 'RAND';
+  } = {
+    limit: 10,
+    page: 0,
+    order: 'RAND',
+  };
+
   constructor(
     private catService: Cat,
     private trackService: Track,
   ) {}
 
+  public selectedBreed: string = '';
   public images: CatImage[] = [];
+  public breeds: Breeds[] = [];
   public userId!: string;
   public votes: Record<string, number> = {};
 
   ngOnInit(): void {
     this.userId = this.trackService.getUserTrack();
+    this.catService.getBreeds().subscribe((breeds) => {
+      this.breeds = breeds;
+    });
   }
 
   onSearch(term: string) {
@@ -37,7 +52,15 @@ export class App implements OnInit {
     }
 
     this.catService
-      .getImages(3, 0, 'RAND', 1, [term], undefined, this.userId)
+      .getImages(
+        this.queryConfig.limit,
+        this.queryConfig.page,
+        this.queryConfig.order,
+        1,
+        [term],
+        undefined,
+        this.userId,
+      )
       .subscribe((images) => {
         this.images = images;
       });
@@ -50,5 +73,23 @@ export class App implements OnInit {
       next: () => (this.votes[image_id] = value),
       error: (err: any) => console.error('Vote failed:', err),
     });
+  }
+
+  filterByBreed(breedName: string) {
+    const shortBreedName = breedName.slice(0, 4);
+    this.selectedBreed = breedName;
+    this.catService
+      .getImages(
+        this.queryConfig.limit,
+        this.queryConfig.page,
+        this.queryConfig.order,
+        1,
+        [shortBreedName],
+        undefined,
+        this.userId,
+      )
+      .subscribe((images) => {
+        this.images = images;
+      });
   }
 }

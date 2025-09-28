@@ -2,6 +2,7 @@ import { Apollo, gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BreedList, Breeds } from './cat.type';
 
 @Injectable({ providedIn: 'root' })
 export class Cat {
@@ -59,6 +60,22 @@ export class Cat {
         variables: { limit, page, order, has_breeds, breed_ids, category_ids, sub_id },
       })
       .valueChanges.pipe(map((result) => (result.data as any).getCatImages));
+  }
+
+  getBreeds(): Observable<Breeds[]> {
+    const GetBreeds = gql`
+      query GetBreeds {
+        getBreedList {
+          name
+        }
+      }
+    `;
+
+    return this.apollo
+      .query<{ getBreedList: Breeds[] }>({
+        query: GetBreeds,
+      })
+      .pipe(map((result) => result.data.getBreedList as any));
   }
 
   postVote(image_id: string, sub_id: string, value: number): any {
