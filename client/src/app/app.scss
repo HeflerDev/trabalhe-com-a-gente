@@ -100,3 +100,50 @@
   background: #f44336;
   color: #fff;
 }
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.pagination-btn {
+  font-size: 1.2rem;
+  padding: 0.75rem 2rem;
+}
+
+.pagination-page {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.title-bar {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 2.5rem 0 2rem 0;
+  letter-spacing: 0.05em;
+  color: #ad1457;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  width: 100%;
+}
+
+app-search-bar {
+  width: 100vw;
+  min-width: 300px;
+  max-width: 600px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+}

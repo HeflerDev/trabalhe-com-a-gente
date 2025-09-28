@@ -15,16 +15,18 @@ import { Breeds, CatImage } from './services/cat.type';
   styleUrl: './app.scss',
 })
 export class App implements OnInit {
-  protected readonly title = signal('client');
+  protected readonly title = signal('Cat Gallery');
 
-  private queryConfig: {
+  protected queryConfig: {
     limit: number;
     page: number;
     order: 'ASC' | 'DESC' | 'RAND';
+    query: string;
   } = {
     limit: 10,
     page: 0,
-    order: 'RAND',
+    order: 'DESC',
+    query: '',
   };
 
   constructor(
@@ -38,6 +40,8 @@ export class App implements OnInit {
   public userId!: string;
   public votes: Record<string, number> = {};
   public showAllBreeds: boolean = false;
+  public currentPage: number = 1;
+  public pageSize: number = 10;
 
   ngOnInit(): void {
     this.userId = this.trackService.getUserTrack();
@@ -52,13 +56,16 @@ export class App implements OnInit {
       return;
     }
 
+    this.queryConfig.query = term;
+    this.queryConfig.page = 0;
+
     this.catService
       .getImages(
         this.queryConfig.limit,
         this.queryConfig.page,
         this.queryConfig.order,
         1,
-        [term],
+        [this.queryConfig.query],
         undefined,
         this.userId,
       )
@@ -77,15 +84,50 @@ export class App implements OnInit {
   }
 
   filterByBreed(breedName: string) {
-    const shortBreedName = breedName.slice(0, 4);
+    this.queryConfig.query = breedName.slice(0, 4);
     this.selectedBreed = breedName;
+    this.queryConfig.page = 0;
     this.catService
       .getImages(
         this.queryConfig.limit,
         this.queryConfig.page,
         this.queryConfig.order,
         1,
-        [shortBreedName],
+        [this.queryConfig.query],
+        undefined,
+        this.userId,
+      )
+      .subscribe((images) => {
+        this.images = images;
+      });
+  }
+
+  nextPage() {
+    this.queryConfig.page += 1;
+    this.catService
+      .getImages(
+        this.queryConfig.limit,
+        this.queryConfig.page,
+        this.queryConfig.order,
+        1,
+        [this.queryConfig.query],
+        undefined,
+        this.userId,
+      )
+      .subscribe((images) => {
+        this.images = images;
+      });
+  }
+
+  previousPage() {
+    this.queryConfig.page -= 1;
+    this.catService
+      .getImages(
+        this.queryConfig.limit,
+        this.queryConfig.page,
+        this.queryConfig.order,
+        1,
+        [this.queryConfig.query],
         undefined,
         this.userId,
       )

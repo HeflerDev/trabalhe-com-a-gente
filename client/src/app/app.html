@@ -1,7 +1,11 @@
 <div class="app-container">
-  <h1>{{ title() }}</h1>
+  <div class="title-bar">
+    <h1>{{ title() }}</h1>
+  </div>
 
-  <app-search-bar (search)="onSearch($event)"></app-search-bar>
+  <div class="search-bar-container">
+    <app-search-bar (search)="onSearch($event)"></app-search-bar>
+  </div>
 
   <div class="breeds-grid">
     @for (breed of showAllBreeds ? breeds : breeds.slice(0, 5); track breed.name) {
@@ -15,7 +19,7 @@
     }
 
     @if (!showAllBreeds && breeds.length > 5) {
-      <button mat-button (click)="showAllBreeds = true">Show more</button>
+      <button mat-button (click)="showAllBreeds = true">Show more...</button>
     }
   </div>
 
@@ -37,5 +41,27 @@
         </div>
       </div>
     }
+  </div>
+
+  <div class="pagination-controls">
+    <button
+      mat-raised-button
+      color="primary"
+      class="pagination-btn"
+      (click)="previousPage()"
+      [disabled]="queryConfig.page <= 1 || images.length === 0"
+    >
+      Previous
+    </button>
+    <span class="pagination-page">Page {{ queryConfig.page }}</span>
+    <button
+      mat-raised-button
+      color="primary"
+      class="pagination-btn"
+      (click)="nextPage()"
+      [disabled]="images.length < queryConfig.limit || images.length === 0"
+    >
+      Next
+    </button>
   </div>
 </div>
