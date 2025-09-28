@@ -19,8 +19,8 @@ app.use(bodyParser.json());
 if (process.env.NODE_ENV !== "production") {
   app.use(express.static(path.join(__dirname, "./public/client/browser")));
 
-  app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "./public/client/browser/index.html"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/public/client/browser/index.html"));
   });
 }
 
