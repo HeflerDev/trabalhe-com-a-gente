@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("/usr/src/app/server/src/public/client/browser"));
 
-  app.get("*", (req, res) => {
+  app.get("/", (req, res) => {
     res.sendFile("/usr/src/app/server/src/public/client/browser/index.html");
   });
 }
