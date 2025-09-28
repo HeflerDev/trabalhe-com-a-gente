@@ -13,9 +13,17 @@ COPY ./server ./
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 
+FROM node:20-alpine AS build
+WORKDIR /usr/src/app/client
+COPY ./client/package*.json ./
+RUN npm ci 
+COPY ./client ./
+RUN npm run build
+
 FROM node:20-alpine AS production
 WORKDIR /usr/src/app/server
 COPY --from=base /usr/src/app/server ./
+COPY --from=build /usr/src/app/client/dist ./public
 CMD ["npm", "run", "prd"]
 
 FROM node:20-alpine AS development
