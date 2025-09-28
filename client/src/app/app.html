@@ -4,7 +4,7 @@
   <app-search-bar (search)="onSearch($event)"></app-search-bar>
 
   <div class="breeds-grid">
-    @for (breed of breeds; track breed.name) {
+    @for (breed of showAllBreeds ? breeds : breeds.slice(0, 5); track breed.name) {
       <button
         mat-button
         (click)="filterByBreed(breed.name)"
@@ -12,6 +12,10 @@
       >
         {{ breed.name }}
       </button>
+    }
+
+    @if (!showAllBreeds && breeds.length > 5) {
+      <button mat-button (click)="showAllBreeds = true">Show more</button>
     }
   </div>
 

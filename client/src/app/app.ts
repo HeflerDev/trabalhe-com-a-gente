@@ -37,6 +37,7 @@ export class App implements OnInit {
   public breeds: Breeds[] = [];
   public userId!: string;
   public votes: Record<string, number> = {};
+  public showAllBreeds: boolean = false;
 
   ngOnInit(): void {
     this.userId = this.trackService.getUserTrack();
