@@ -1,6 +1,6 @@
 services:
   server:
-    image: cat_api:${NODE_ENV}-latest
+    image: ${DOCKER_USERNAME}/${DOCKER_REPO}
     container_name: ${DOCKER_USERNAME}/${DOCKER_REPO}
     restart: always
     build:
