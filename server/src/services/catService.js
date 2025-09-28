@@ -41,3 +41,8 @@ export async function postVoteForCatApi(image_id, sub_id, value) {
     throw new Error(err.message);
   }
 }
+
+export async function getBreedsList() {
+  const { data } = await catApiClient.get("/breeds");
+  return data;
+}
