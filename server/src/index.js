@@ -17,10 +17,10 @@ app.use(cors({ origin: "http://localhost:4200", credentials: true }));
 app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "./public/client/browser")));
+  app.use(express.static("/usr/src/app/server/src/public/client/browser"));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./public/client/browser/index.html"));
+    res.sendFile("/usr/src/app/server/src/public/client/browser/index.html");
   });
 }
 
@@ -45,6 +45,6 @@ app.listen(PORT, () => {
   console.log(
     `🚀 Servidor GraphQL rodando em: http://localhost:${PORT}/graphql`,
   );
-  if (process.env.NODE_ENV !== "production")
+  if (process.env.NODE_ENV === "production")
     console.log(`🌐 Servindo arquivos estáticos em: http://localhost:${PORT}/`);
 });
