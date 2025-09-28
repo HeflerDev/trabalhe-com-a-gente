@@ -1,16 +1,9 @@
 services:
   server:
-    image: node:22
-    container_name: main_server_dev
-    working_dir: /usr/src/app
-    restart: unless-stopped
+    image: cat_api:${NODE_ENV}-latest
+    container_name: ${DOCKER_USERNAME}/${DOCKER_REPO}
+    restart: always
     build:
       context: ./
       dockerfile: ./server/Dockerfile
-      target: development
-    ports:
-      - "4000:4000"
-    env_file:
-      - ./server/.env
-    networks:
-      - app
+      target: production
