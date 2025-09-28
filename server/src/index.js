@@ -17,7 +17,7 @@ app.use(cors({ origin: "http://localhost:4200", credentials: true }));
 app.use(bodyParser.json());
 
 if (process.env.NODE_ENV !== "production") {
-  app.use(express.static(path.join(__dirname, "public/client/browser")));
+  app.use(express.static(path.join(__dirname, "./public/client/browser")));
 }
 
 const server = new ApolloServer({
