@@ -35,11 +35,11 @@ jobs:
 
       - name: Tag Images
         run: |
-          docker tag ${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }} "${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}:latest"
+          docker tag ${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }} "${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}:${{ env.NODE_ENV }}-latest"
 
       - name: Push to Repository
         run: |
-          docker push "${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}:latest"
+          docker push "${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}:${{ env.NODE_ENV }}-latest"
 
   deploy:
     name: Deploy to EC2
@@ -56,12 +56,12 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ env.EC2_USER }}@${{ env.EC2_DNS }} "
             docker login -u '${{ env.DOCKER_USERNAME }}' -p '${{ env.DOCKER_PASSWORD }}'
-            docker pull '${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}:latest'
+            docker pull '${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}:${{ env.NODE_ENV }}-latest'
             docker stop cat-api || true
             docker rm cat-api || true
             docker run -d --name cat-api \
               -e CAT_API_KEY='${{ env.CAT_API_KEY }}' \
               -e NODE_ENV='${{ env.NODE_ENV }}' \
               -p 3000:3000 \
-              '${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}:latest'
+              '${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}:${{ env.NODE_ENV }}-latest'
           "
