@@ -13,7 +13,16 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:4200", credentials: true }));
+const corsOptions = {
+  origin: [
+    "http://localhost:4200",
+    "http://54.226.76.58:4000",
+    "https://api.thecatapi.com", // não precisa colocar o caminho /v1/images/search
+  ],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === "production") {
@@ -33,7 +42,7 @@ await server.start();
 
 app.use(
   "/graphql",
-  cors(),
+  cors(corsOptions),
   bodyParser.json(),
   expressMiddleware(server, {
     context: async ({ req }) => ({ token: req.headers.token }),
