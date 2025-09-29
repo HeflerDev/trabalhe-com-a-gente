@@ -22,7 +22,7 @@ export const appConfig: ApplicationConfig = {
       provide: APOLLO_OPTIONS,
       useFactory: (httpLink: HttpLink) => ({
         cache: new InMemoryCache(),
-        link: httpLink.create({ uri: 'http://localhost:4000/graphql' }),
+        link: httpLink.create({ uri: 'https://test.stangsfb.com/graphql' }),
       }),
       deps: [HttpLink],
     },
