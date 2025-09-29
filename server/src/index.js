@@ -14,11 +14,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 const corsOptions = {
-  origin: [
-    "http://localhost:4200",
-    "http://54.226.76.58:4000",
-    "https://api.thecatapi.com", // não precisa colocar o caminho /v1/images/search
-  ],
+  origin: ["http://54.226.76.58:4000", "https://api.thecatapi.com"],
   credentials: true,
 };
 
