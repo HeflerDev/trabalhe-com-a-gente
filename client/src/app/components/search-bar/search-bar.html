@@ -7,17 +7,11 @@
     (input)="onInputChange()"
     placeholder="Type a cat breed..."
   />
-  <button
-    *ngIf="searchTerm"
-    matSuffix
-    mat-icon-button
-    aria-label="Clear"
-    (click)="clear()"
-  >
-    <mat-icon>close</mat-icon>
-  </button>
+  @if (searchTerm) {
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
 </mat-form-field>
 
-<button mat-raised-button color="primary" (click)="onSearch()">
-  Search
-</button>
+<button mat-raised-button color="primary" (click)="onSearch()">Search</button>

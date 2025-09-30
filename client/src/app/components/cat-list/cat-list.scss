@@ -1,0 +1,32 @@
+@import '../../app.scss';
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.cat-card {
+  border: none;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  background: $card-background;
+  box-shadow: 0 4px 16px $shadow-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transition: box-shadow 0.2s;
+}
+.cat-card:hover {
+  box-shadow: 0 8px 24px $shadow-hover;
+}
+
+.cat-card img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}

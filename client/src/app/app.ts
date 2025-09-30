@@ -2,6 +2,7 @@ import { Component, signal, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SearchBar } from './components/search-bar/search-bar';
+import { CatList } from './components/cat-list/cat-list';
 import { Cat } from './services/cat';
 import { Track } from './services/track';
 import { CommonModule } from '@angular/common';
@@ -9,10 +10,10 @@ import { Breeds, CatImage } from './services/cat.type';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [SearchBar, CommonModule, MatButtonModule, MatIconModule],
+  imports: [SearchBar, CommonModule, MatButtonModule, MatIconModule, CatList],
   templateUrl: './app.html',
   styleUrl: './app.scss',
+  standalone: true,
 })
 export class App implements OnInit {
   protected readonly title = signal('Cat Gallery');

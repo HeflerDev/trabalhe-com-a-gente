@@ -23,25 +23,7 @@
     }
   </div>
 
-  <div class="cat-grid">
-    @for (cat of images; track cat.id) {
-      <div class="cat-card">
-        <img [src]="cat.url" [alt]="'Cat'" />
-        <h3>{{ cat.breeds[0].name }}</h3>
-        <p>{{ cat.breeds[0].temperament }}</p>
-
-        <div class="vote-buttons">
-          <button mat-icon-button color="primary" (click)="vote(cat.id, userId, 1)">
-            <mat-icon>thumb_up</mat-icon>
-          </button>
-
-          <button mat-icon-button color="warn" (click)="vote(cat.id, userId, 0)">
-            <mat-icon>thumb_down</mat-icon>
-          </button>
-        </div>
-      </div>
-    }
-  </div>
+  <app-cat-list [images]="images" [userId]="userId" [vote]="vote"></app-cat-list>
 
   <div class="pagination-controls">
     <button
