@@ -49,6 +49,17 @@ export class App implements OnInit {
     this.catService.getBreeds().subscribe((breeds) => {
       this.breeds = breeds;
     });
+    this.catService
+      .getImages(
+        this.queryConfig.limit,
+        this.queryConfig.page,
+        this.queryConfig.order,
+        1,
+        undefined,
+        undefined,
+        this.userId,
+      )
+      .subscribe((images) => {});
   }
 
   onSearch(term: string) {
