@@ -1,11 +1,12 @@
 $primary-color: #ad1457;
 $secondary-color: #e91e63;
+$accent-color: #f48fb1;
+$accent-hover: #f8bbd0;
+$upvote-color: #f06292;
+$downvote-color: #880e4f;
+
 $background-color: #f7f9fb;
 $card-background: #ffffff;
-$accent-color: #e3f2fd;
-$accent-hover: #90caf9;
-$upvote-color: #4caf50;
-$downvote-color: #f44336;
 $shadow-color: rgba(0, 0, 0, 0.07);
 $shadow-hover: rgba(0, 0, 0, 0.12);
 
@@ -21,71 +22,6 @@ $font-size-btn: 1.2rem;
   margin: 0 auto;
   background: $background-color;
   font-family: $font-family-base;
-}
-
-.breeds-grid button {
-  border-radius: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px 24px;
-  text-align: center;
-  background: $accent-color;
-  transition:
-    background 0.2s,
-    transform 0.2s,
-    box-shadow 0.2s;
-  font-weight: 500;
-  font-size: $font-size-base;
-  margin: 8px;
-  displaykk: inline-block;
-}
-
-.breeds-grid button:hover {
-  background: $accent-hover;
-  transform: scale(1.07);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
-}
-
-.breeds-grid button.selected {
-  background: $secondary-color;
-  color: #fff;
-  border: 2px solid $primary-color;
-  box-shadow: 0 4px 16px rgba(233, 30, 99, 0.18);
-  transform: scale(1.07);
-}
-
-.vote-btn {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: $font-size-btn;
-  background: #fff;
-  border: none;
-  cursor: pointer;
-  margin: 0 8px;
-  transition:
-    transform 0.2s,
-    background 0.2s,
-    box-shadow 0.2s;
-}
-
-.vote-btn:hover {
-  transform: scale(1.15) rotate(-10deg);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
-}
-
-.vote-btn.upvoted {
-  background: $upvote-color;
-  color: #fff;
-}
-
-.vote-btn.downvoted {
-  background: $downvote-color;
-  color: #fff;
 }
 
 .pagination-controls {

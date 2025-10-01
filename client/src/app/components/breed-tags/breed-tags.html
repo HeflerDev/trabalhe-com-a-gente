@@ -1,0 +1,15 @@
+<div class="breeds-grid">
+  @for (breed of showAllBreeds ? breeds() : breeds().slice(0, 5); track breed.name) {
+    <button
+      mat-button
+      (click)="filterByBreed.emit(breed.name)"
+      [class.selected]="selectedBreed() === breed.name"
+    >
+      {{ breed.name }}
+    </button>
+  }
+
+  @if (!showAllBreeds && breeds().length > 5) {
+    <button mat-button (click)="showAllBreeds = true">Show more...</button>
+  }
+</div>

@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SearchBar } from './components/search-bar/search-bar';
 import { CatList } from './components/cat-list/cat-list';
+import { BreedTags } from './components/breed-tags/breed-tags';
 import { Cat } from './services/cat';
 import { Track } from './services/track';
 import { CommonModule } from '@angular/common';
@@ -10,7 +11,7 @@ import { Breeds, CatImage } from './services/cat.type';
 
 @Component({
   selector: 'app-root',
-  imports: [SearchBar, CommonModule, MatButtonModule, MatIconModule, CatList],
+  imports: [SearchBar, CommonModule, MatButtonModule, MatIconModule, CatList, BreedTags],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   standalone: true,
@@ -24,8 +25,8 @@ export class App implements OnInit {
     order: 'ASC' | 'DESC' | 'RAND';
     query: string;
   } = {
-    limit: 10,
-    page: 0,
+    limit: 12,
+    page: 1,
     order: 'DESC',
     query: '',
   };
@@ -55,11 +56,13 @@ export class App implements OnInit {
         this.queryConfig.page,
         this.queryConfig.order,
         1,
-        undefined,
+        [this.queryConfig.query],
         undefined,
         this.userId,
       )
-      .subscribe((images) => {});
+      .subscribe((images) => {
+        this.images = images;
+      });
   }
 
   onSearch(term: string) {

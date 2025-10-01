@@ -7,23 +7,22 @@
     <app-search-bar (search)="onSearch($event)"></app-search-bar>
   </div>
 
-  <div class="breeds-grid">
-    @for (breed of showAllBreeds ? breeds : breeds.slice(0, 5); track breed.name) {
-      <button
-        mat-button
-        (click)="filterByBreed(breed.name)"
-        [class.selected]="selectedBreed === breed.name"
-      >
-        {{ breed.name }}
-      </button>
-    }
-
-    @if (!showAllBreeds && breeds.length > 5) {
-      <button mat-button (click)="showAllBreeds = true">Show more...</button>
-    }
+  <div class="breed-tags-container">
+    <app-breed-tags
+      [breeds]="breeds"
+      [selectedBreed]="selectedBreed"
+      (filterByBreed)="filterByBreed($event)"
+      [showAllBreeds]="showAllBreeds"
+    ></app-breed-tags>
   </div>
 
-  <app-cat-list [images]="images" [userId]="userId" [vote]="vote"></app-cat-list>
+  <div class="cat-list-container">
+    <app-cat-list
+      [images]="images"
+      [userId]="userId"
+      (vote)="vote($event.image_id, $event.sub_id, $event.value)"
+    ></app-cat-list>
+  </div>
 
   <div class="pagination-controls">
     <button
