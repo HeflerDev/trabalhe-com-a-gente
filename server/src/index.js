@@ -14,13 +14,21 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 const corsOptions = {
-  origin: ["http://54.226.76.58:4000", "https://api.thecatapi.com"],
+  origin: [
+    "https://api.thecatapi.com",
+    process.env.NODE_ENV === "production"
+      ? "http://54.226.76.58:4000"
+      : "http://localhost:4200",
+  ],
   credentials: true,
 };
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
-
+/*
+ * Since production environment is built on Docker, no need to use path
+ * to locate the static files, just use the absolute path.
+ */
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("/usr/src/app/server/src/public/client/browser"));
 
