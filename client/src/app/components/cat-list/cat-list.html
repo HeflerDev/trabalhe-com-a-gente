@@ -8,7 +8,7 @@
       <div class="vote-btn">
         <button
           mat-icon-button
-          color="primary"
+          [class.upvoted]="votes[cat.id] === 1"
           (click)="vote.emit({ image_id: cat.id, sub_id: userId, value: 1 })"
         >
           <mat-icon>thumb_up</mat-icon>
@@ -16,7 +16,7 @@
 
         <button
           mat-icon-button
-          color="warn"
+          [class.downvoted]="votes[cat.id] === 0"
           (click)="vote.emit({ image_id: cat.id, sub_id: userId, value: 0 })"
         >
           <mat-icon>thumb_down</mat-icon>

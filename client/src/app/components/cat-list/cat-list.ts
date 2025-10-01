@@ -13,5 +13,6 @@ import { MatButtonModule } from '@angular/material/button';
 export class CatList {
   @Input() images: any[] = [];
   @Input() userId: string = '';
+  @Input() votes: Record<string, number> = {};
   @Output() vote = new EventEmitter<{ image_id: string; sub_id: string; value: number }>();
 }

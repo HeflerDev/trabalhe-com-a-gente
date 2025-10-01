@@ -55,12 +55,12 @@
   /* box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18); */
 }
 
-.vote-btn.upvoted {
+.upvoted {
   background: $upvote-color;
   color: #fff;
 }
 
-.vote-btn.downvoted {
+.downvoted {
   background: $downvote-color;
   color: #fff;
 }

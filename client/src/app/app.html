@@ -20,6 +20,7 @@
     <app-cat-list
       [images]="images"
       [userId]="userId"
+      [votes]="votes"
       (vote)="vote($event.image_id, $event.sub_id, $event.value)"
     ></app-cat-list>
   </div>
