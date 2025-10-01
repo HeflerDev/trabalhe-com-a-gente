@@ -63,6 +63,11 @@ export class App implements OnInit {
       .subscribe((images) => {
         this.images = images;
       });
+
+    const storedVotes = localStorage.getItem('catVotes');
+    if (storedVotes) {
+      this.votes = JSON.parse(storedVotes);
+    }
   }
 
   onSearch(term: string) {
@@ -93,7 +98,10 @@ export class App implements OnInit {
     if (!image_id || !sub_id || value === null || value === undefined) return;
 
     this.catService.postVote(image_id, sub_id, value).subscribe({
-      next: () => (this.votes[image_id] = value),
+      next: () => {
+        this.votes[image_id] = value;
+        localStorage.setItem('catVotes', JSON.stringify(this.votes));
+      },
       error: (err: any) => console.error('Vote failed:', err),
     });
   }
